@@ -17,7 +17,7 @@ if __name__ == "__main__":
     doc = loader.load()
 
     print("Splitting")
-    splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=30, separator="\n")
     split_text = splitter.split_documents(doc)
     print(f"Split into {len(split_text)} chunks")
 
@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
     print("Ingesting through embedding model")
     index_name = os.environ.get("INDEX_NAME")
+
     vector_store = PineconeVectorStore.from_documents(
         documents=split_text, embedding=embeddings, index_name=index_name
     )

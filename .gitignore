@@ -1,3 +1,4 @@
 Pip*
 .env
 .vscode
+faiss_embeddings/
